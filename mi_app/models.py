@@ -1,21 +1,20 @@
 from unittest.util import _MAX_LENGTH
 from django.db import models
 
-# Create your models here.
 
-class Curso(models.Model):
-    nombre =models.CharField(max_length=30)
-    camada = models.IntegerField()
+class Supermercado(models.Model):
+    sucursal = models.CharField(max_length=50)
+    empleados = models.IntegerField()
 
-class Estudiante(models.Model):
+class Vendedor(models.Model):
+    nombre = models.CharField(max_length=30)
+    apellido = models.CharField(max_length=30)
+    numero_de_caja = models.IntegerField()
+
+class Cliente (models.Model):
     nombre = models.CharField(max_length=30)
     apellido = models.CharField(max_length=30)
     email = models.EmailField()
 
-class Profesor (models.Model):
-    nombre = models.CharField(max_length=30)
-    apellido = models.CharField(max_length=30)
-    email = models.EmailField()
-    profesion = models.CharField(max_length=30)
 
 

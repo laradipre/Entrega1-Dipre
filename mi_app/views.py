@@ -1,106 +1,108 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from datetime import date, datetime
-from mi_app.models import Curso, Estudiante, Profesor
-from mi_app.forms import CursoBusquedaFormulario,CursoFormulario, EstudianteBusquedaFormulario, ProfesorBusquedaFormulario, ProfesorFormulario, EstudianteFormulario
+from mi_app.models import Supermercado, Vendedor, Cliente
+from mi_app.forms import SuperBusquedaFormulario, SupermercadoFormulario, VendedorBusquedaFormulario, VendedorFormulario, ClienteBusquedaFormulario, ClienteFormulario
 
+def base(request):
+    return render (request, 'entrega_1/base.html', {})
 
-def formulario_curso(request):
+def formulario_supermercado(request):
 
     if request.method == "POST":
 
-        mi_formulario = CursoFormulario(request.POST)
+        mi_formulario = SupermercadoFormulario(request.POST)
 
         if  mi_formulario.is_valid:
             datos = mi_formulario.cleaned_data 
-            curso = Curso(nombre=datos["nombre"], camada=datos["camada"])
-            curso.save()
+            super = Supermercado(sucursal=datos["sucursal"], empleados=datos["cantidad de empleados"])
+            super.save()
 
-            return render(request, "mi_app/formulario.html", {"mensaje":"agregado con exito!"})
-
-    else:
-
-        mi_formulario = CursoFormulario()
-
-    return render(request, "mi_app/formulario.html", {"mi_formulario":mi_formulario})
-
-
-def busqueda_curso(request):
-
-    busqueda_curso = CursoBusquedaFormulario()
-
-    if request.GET:     
-        cursos = Curso.objects.filter(nombre=busqueda_curso["criterio"]).all()
-        return render(request, "mi_app/busqueda.html", {"busqueda_curso": busqueda_curso, "cursos": cursos})
-
-
-    return render(request, "mi_app/busqueda.html", {"busqueda_formulario": busqueda_curso})
-
-def formulario_estudiante(request):
-
-    if request.method == "POST":
-
-        mi_formulario = EstudianteFormulario(request.POST)
-
-
-        if  mi_formulario.is_valid:
-            datos = mi_formulario.cleaned_data 
-            estudiantes = Estudiante(nombre=datos["nombre"], apellido=datos["apellido"], email=datos['email'])
-            estudiantes.save()
-
-            return render(request, "mi_app/form_estudiante.html", {"mensaje":"agregado con exito!"})
+            return render(request, "entrega_1/sucursal.html", {"mensaje":"agregado con exito!"})
 
     else:
 
-        mi_formulario = EstudianteFormulario()
+        mi_formulario = SupermercadoFormulario()
 
-    return render(request, "mi_app/form_estudiante.html", {"mi_formulario":mi_formulario})
+    return render(request, "entrega_1/sucursal.html", {"mi_formulario":mi_formulario})
 
 
+def busqueda_super(request):
 
-def busqueda_estudiante(request):
-
-    busqueda_estudiante = EstudianteBusquedaFormulario()
-
+    busqueda_super = SuperBusquedaFormulario()
 
     if request.GET:     
-        estudiantes = Estudiante.objects.filter(nombre=busqueda_estudiante["criterio"]).all()
-        return render(request, "mi_app/search_estudiante.html", {"busqueda_estudiante": busqueda_estudiante, 'estudiantes': estudiantes})
+        supers = Supermercado.objects.filter(sucursal=busqueda_super["criterio"]).all()
+        return render(request, "entrega_1/busqueda.html", {"busqueda_super": busqueda_super, "supermercados": supers})
 
 
-    return render(request, "mi_app/search_estudiante.html", {"busqueda_estudiante": busqueda_estudiante})
+    return render(request, "entrega_1/busqueda.html", {"busqueda_formulario": busqueda_super})
 
-def formulario_profesor(request):
+def formulario_vendedor(request):
 
     if request.method == "POST":
 
-        mi_formulario = ProfesorFormulario(request.POST)
+        mi_formulario = VendedorFormulario(request.POST)
 
 
         if  mi_formulario.is_valid:
             datos = mi_formulario.cleaned_data 
-            profesores = Profesor(nombre=datos["nombre"], apellido=datos["apellido"], email=datos['email'], profesion=datos['profesion'])
-            profesores.save()
+            vendedores = Vendedor(nombre=datos["nombre"], apellido=datos["apellido"], numero_de_caja=datos['numero de caja'])
+            vendedores.save()
 
-            return render(request, "mi_app/form_profesor.html", {"mensaje":"agregado con exito!"})
+            return render(request, "entrega_1/vendedor.html", {"mensaje":"agregado con exito!"})
 
     else:
 
-        mi_formulario = ProfesorFormulario()
+        mi_formulario = VendedorFormulario()
 
-    return render(request, "mi_app/form_profesor.html", {"mi_formulario":mi_formulario})
+    return render(request, "entrega_1/vendedor.html", {"mi_formulario":mi_formulario})
 
 
 
-def busqueda_profesor(request):
+def busqueda_vendedor(request):
 
-    busqueda_profesor = ProfesorBusquedaFormulario()
+    busqueda_vendedor = VendedorBusquedaFormulario()
 
 
     if request.GET:     
-        profesores = Profesor.objects.filter(nombre=busqueda_profesor["criterio"]).all()
-        return render(request, "mi_app/search_profesor.html", {"busqueda_profesor": busqueda_profesor, 'profesores': profesores})
+        vendedores = Vendedor.objects.filter(nombre=busqueda_vendedor["criterio"]).all()
+        return render(request, "entrega_1/buscarvendedor.html", {"busqueda_vendedor": busqueda_vendedor, 'vendedores': vendedores})
 
 
-    return render(request, "mi_app/search_profesor.html", {"busqueda_profesor": busqueda_profesor})
+    return render(request, "entrega_1/buscarvendedor.html", {"busqueda_estudiante": busqueda_vendedor})
+
+def formulario_cliente(request):
+
+    if request.method == "POST":
+
+        mi_formulario = ClienteFormulario(request.POST)
+
+
+        if  mi_formulario.is_valid:
+            datos = mi_formulario.cleaned_data 
+            clientes = Cliente(nombre=datos["nombre"], apellido=datos["apellido"], email=datos['email'])
+            clientes.save()
+
+            return render(request, "entrega_1/cliente.html", {"mensaje":"agregado con exito!"})
+
+    else:
+
+        mi_formulario = ClienteFormulario()
+
+    return render(request, "entrega_1/cliente.html", {"mi_formulario":mi_formulario})
+
+
+
+def busqueda_cliente (request):
+
+    busqueda_cliente = ClienteBusquedaFormulario()
+
+
+    if request.GET:     
+        clientes = Cliente.objects.filter(nombre=busqueda_cliente["criterio"]).all()
+        return render(request, "entrega_1/buscarcliente.html", {"busqueda_cliente": busqueda_cliente, 'clientes': clientes})
+
+
+    return render(request, "entrega_1/buscarcliente.html", {"busqueda_cliente": busqueda_cliente})
 

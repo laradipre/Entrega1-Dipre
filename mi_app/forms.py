@@ -1,27 +1,25 @@
 from django import forms
 
-class CursoFormulario(forms.Form):
+class SupermercadoFormulario(forms.Form):
+    sucursal = forms.CharField(required=False)
+    empleados = forms.IntegerField()
 
-    curso = forms.CharField(required=False)
-    camada = forms.IntegerField()
-
-class CursoBusquedaFormulario(forms.Form):
+class SuperBusquedaFormulario(forms.Form):
     criterio = forms.CharField() 
 
-class EstudianteFormulario(forms.Form):
+class VendedorFormulario(forms.Form):
     nombre = forms.CharField(required=False)
     apellido = forms.CharField(required=False)
-    email= forms.EmailField()
+    numero_de_caja= forms.IntegerField()
 
-class ProfesorFormulario(forms.Form):
+class ClienteFormulario(forms.Form):
     nombre = forms.CharField(required=False)
     apellido = forms.CharField(required=False)
     email=forms.EmailField()
-    profesion = forms.CharField(required=False)
 
-class EstudianteBusquedaFormulario(forms.Form):
+class VendedorBusquedaFormulario(forms.Form):
     criterio = forms.CharField()
 
-class ProfesorBusquedaFormulario(forms.Form):
+class ClienteBusquedaFormulario(forms.Form):
     criterio = forms.CharField()
 
