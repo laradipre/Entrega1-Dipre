@@ -1,11 +1,11 @@
 # Entrega1-Dipre
 
-**ENTREGA_1 - DIPRE LARA**
-Este proyecto cuenta con 3 formularios para ingresar diferentes cursos, estudiantes que asistan a los mismos y los respectivos profesores. 
+**ENTREGA-1 - DIPRE LARA**
+Este proyecto cuenta con 3 formularios para ingresar diferentes sucursales de un supermercado, vendedores que trabajan en los mismos y clientes frecuentes. 
 
-*Con el acceso a la pagina web, es posible inscribirse al curso elegido y la misma le pedira sus datos*
+*Se recomienda:*
 
-1. Ingresar los cursos
-2. Ingresar los datos de los estudiantes
-3. Ingresar datos de los profesores
-4. Es posible averiguar los datos ingresados de cada curso, a traves del formulario para buscar.
+1. Ingresar los datos de la sucursal
+2. Ingresar los datos de los vendedores y de clientes
+3. Guardar los datos ingresados
+4. A partir de ahora, es posible averiguar los datos ingresados de cada sucursal, vendedor o cliente a traves de la seccion "Buscar" segun corresponda.
